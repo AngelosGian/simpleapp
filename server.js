@@ -3,7 +3,7 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 // const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000 ;
-
+app.set('view engine', 'ejs');
 const connect = 'mongodb+srv://angelosgian:kyX8mjtH516j29Pa@cluster0.hxcp0.mongodb.net/?retryWrites=true&w=majority'
 
 // MongoClient.connect(connect, (err, client) => {
@@ -22,16 +22,23 @@ MongoClient.connect(connect)
 
 
         app.get('/', (req, res)=> {
-            res.sendFile(__dirname + '/public/index.html')
-        })
+            // res.sendFile(__dirname + '/public/index.html')
+            collection.find().toArray()
+            .then(results => {
+              console.log(results)
+              res.render('index.ejs', {quotes: results})
+            })
+            .catch(err => console.error(err))
+          })
 
-        app.post('/quotes', (req, res)=>{
-            collection.insertOne(req.body)
-            .then(result => { 
-               console.log(result)
-            }
-        })
-
+        app.post('/quotes', (req, res) => {
+              collection.insertOne(req.body)
+                .then(result => {
+                  // console.log(result)
+                  res.redirect('/')
+                })
+                .catch(error => console.error(error))
+            })
 
 
         app.listen(PORT, () => {
@@ -40,4 +47,4 @@ MongoClient.connect(connect)
     
     
     })
-    .catch(err => console.log(err));
+    .catch((err) => {console.log(err)})
