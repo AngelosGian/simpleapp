@@ -26,7 +26,10 @@ MongoClient.connect(connect)
         })
 
         app.post('/quotes', (req, res)=>{
-            console.log(req.body)
+            collection.insertOne(req.body)
+            .then(result => { 
+               console.log(result)
+            }
         })
 
 
