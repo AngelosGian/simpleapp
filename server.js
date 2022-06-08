@@ -15,17 +15,17 @@ MongoClient.connect(connect)
     .then(client => {
         console.log('Connected to mongoDB');
         const db = client.db('star-wars-quotes');
-        const collection = db.collection('quotes');
-    
+        const collections = db.collection('quotes');
+        app.use(express.static('public'))
         // app.use(bodyParser.urlencoded({extended: true}))
         app.use(express.urlencoded({extended: true}))
 
 
         app.get('/', (req, res)=> {
             // res.sendFile(__dirname + '/public/index.html')
-            collection.find().toArray()
+            collections.find().toArray()
             .then(results => {
-              console.log(results)
+              // console.log(results)
               res.render('index.ejs', {quotes: results})
             })
             .catch(err => console.error(err))
@@ -39,7 +39,9 @@ MongoClient.connect(connect)
                 })
                 .catch(error => console.error(error))
             })
-
+        app.put('/quotes', (req, res) => {
+          console.log(req.body)
+        })
 
         app.listen(PORT, () => {
           console.log(`It's alive on port ${PORT}`);

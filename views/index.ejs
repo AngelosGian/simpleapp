@@ -14,12 +14,26 @@
         <input type="text" placeholder="quotes" name="quotes">
         <button type="submit">Submit</button>
     </form>
-
+    <div>
+        <h2>Darth Vadar invades!</h2>
+        <p>
+          Replace first Yoda's quote with a quote written by Darth Vadar
+        </p>
+        <button id="update-button">Replace Yoda's quote</button>
+      </div>
     <h2>Results</h2>
     <ul>
         <% for(var i = 0; i < quotes.length; i++) { %>
-            <li><%= quotes[i].name %></li>
+            <li>
+                <span>
+                    <%= quotes[i].name %> 
+                </span>: 
+                <span>
+                    <%= quotes[i].quotes %>
+                </span>
+            </li>
         <% } %>
     </ul>
+    <script src="/main.js"></script>
 </body>
 </html>
