@@ -49,7 +49,9 @@ MongoClient.connect(connect)
             update,
             options
             )
-            .then(result => {})
+            .then(result => {
+              res.json('Success')
+            })
             .catch(error => console.error(error))
         })
         app.listen(PORT, () => {
