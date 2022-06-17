@@ -18,11 +18,10 @@ MongoClient.connect(connect)
         console.log('Connected to mongoDB');
         const db = client.db('star-wars-quotes');
         const collections = db.collection('quotes');
-        app.use(express.static('public'))
         // app.use(bodyParser.urlencoded({extended: true}))
         app.use(express.json())
         app.use(express.urlencoded({extended: true}))
-
+        app.use(express.static('public'))
 
         app.get('/', (req, res)=> {
             // res.sendFile(__dirname + '/public/index.html')
