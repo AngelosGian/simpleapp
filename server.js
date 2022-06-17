@@ -45,7 +45,12 @@ MongoClient.connect(connect)
           console.log(req.body)
           collections.findOneAndUpdate(
             {name: 'Yoda'},
-            update,
+            {
+              $set: {
+                name: req.body.name,
+                quote: req.body.quote
+              }  
+            }
             options
             )
             .then(result => {
