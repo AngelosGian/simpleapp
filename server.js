@@ -50,7 +50,7 @@ MongoClient.connect(connect)
                 name: req.body.name,
                 quote: req.body.quote
               }  
-            }
+            },
             options
             )
             .then(result => {
