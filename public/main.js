@@ -11,5 +11,8 @@ updateButton.addEventListener('click', _ => {
         .then(result => {
             if (result.ok) { return result.json}
         })
+        .then(response => {
+            console.log(response);
+        })
     })
 })
