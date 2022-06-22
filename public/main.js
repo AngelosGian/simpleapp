@@ -8,5 +8,8 @@ updateButton.addEventListener('click', _ => {
             name: 'Darth Vader',
             quote: 'I find your lack of faith disturbing.'
         })
+        .then(result => {
+            if (result.ok) { return result.json}
+        })
     })
 })
