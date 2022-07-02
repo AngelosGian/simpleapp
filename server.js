@@ -51,7 +51,10 @@ MongoClient.connect(connect)
                 quote: req.body.quote
               }  
             },
-            options
+            {
+              upsert: true
+            }
+
             )
             .then(result => {
               res.json('Success')
